@@ -1,0 +1,32 @@
+#full-page-wrapper{
+    height: 100vh;
+    width: 100vw;
+    position: relative;
+    overflow-y: scroll;
+    scroll-snap-type: y mandatory;
+    scroll-behavior: smooth;
+    overflow-x: hidden;
+}
+
+#fullpage-wrapper::-webkit-scrollbar {
+    display: none;
+}
+
+#fullpage-wrapper {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+}
+
+.full-width-section{
+    width: 100vw;
+    position: relative;
+    height: 100vh;
+    scroll-snap-align: start;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    scroll-snap-stop: always;
+    color:white;
+    background-color: green;
+}
+
