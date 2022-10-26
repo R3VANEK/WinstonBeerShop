@@ -4,9 +4,20 @@ import React from 'react'
 
 const GallerySection = () =>{
     return(
-        <section className="full-width-section" style={{backgroundColor:"lime"}}>
+        <section className="full-width-section gallery-section">
 
-            <h1>Hello from gallery</h1>
+            <article className="gallery-el">
+                <span className="material-symbols-outlined">task_alt</span>
+                <p>The best ingredients</p>
+            </article>
+            <article className="gallery-el">
+                <span className="material-symbols-outlined">task_alt</span>
+                <p>Expert brewers</p>   
+            </article>
+            <article className="gallery-el">
+                <span className="material-symbols-outlined">task_alt</span>
+                <p>Overwhelming taste</p>  
+            </article>
 
         </section>
     )

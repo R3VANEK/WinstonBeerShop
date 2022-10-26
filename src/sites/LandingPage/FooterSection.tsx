@@ -4,9 +4,9 @@ import React from 'react'
 
 const FooterSection = () =>{
     return(
-        <footer className="full-width-section" style={{backgroundColor:"magenta", height:"20vh"}}>
+        <footer className="full-width-section footer-section">
 
-            <h1>Hello from footer</h1>
+            <h3>Made by <span id="author-span">Jan Napieralski</span></h3>
 
         </footer>
     )

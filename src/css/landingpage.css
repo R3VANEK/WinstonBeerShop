@@ -177,4 +177,50 @@ section.about-section #about-content-wrapper div:nth-of-type(2) img:nth-of-type(
   top: -10%;
   left: 40%;
   z-index: 1;
+}
+
+section.gallery-section {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  background-image: url("../images/sectionImages/hero1.jpg");
+  background-position: 50% 50%;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+section.gallery-section .gallery-el {
+  width: 33.3%;
+  height: 100%;
+  background-color: rgba(51, 51, 51, 0.544);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  font-size: 3rem;
+  color: white;
+  transition: 0.3s ease-in-out;
+  cursor: pointer;
+}
+section.gallery-section .gallery-el:hover {
+  color: #f8bf3a;
+}
+section.gallery-section .gallery-el span {
+  font-size: 8rem;
+}
+section.gallery-section .gallery-el:nth-of-type(2) {
+  background-color: rgba(51, 51, 51, 0.806);
+}
+
+footer.footer-section {
+  background-color: #f8bf3a;
+  color: #333;
+  height: 10vh;
+}
+footer.footer-section h3 {
+  margin-left: 3%;
+  margin-top: 35px;
+  font-size: 1.8rem;
+  font-weight: bold;
+  font-family: "Kaushan Script", cursive;
 }/*# sourceMappingURL=landingpage.css.map */

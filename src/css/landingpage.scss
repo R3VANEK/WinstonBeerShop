@@ -194,3 +194,59 @@ section.about-section{
 
     }
 }
+
+
+
+
+section.gallery-section{
+
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    background-image: url('../images/sectionImages/hero1.jpg');
+    background-position: 50% 50%;
+    background-repeat: no-repeat;
+    background-size: cover;
+
+    .gallery-el{
+        width:33.3%;
+        height:100%;
+        background-color: rgba(51, 51, 51, 0.544);
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        font-size:3rem;
+        color:white;
+        transition: 0.3s ease-in-out;
+        cursor: pointer;
+
+        &:hover{
+            color:#f8bf3a
+        }
+        
+        span{
+            font-size:8rem;
+        }
+        &:nth-of-type(2){
+            background-color: rgba(51, 51, 51, 0.806); 
+        }
+    }
+}
+
+
+
+footer.footer-section{
+    background-color: #f8bf3a;
+    color:#333;
+    height:10vh;
+
+    h3{
+        margin-left:3%;
+        margin-top:35px;
+        font-size: 1.8rem;
+        font-weight: bold;
+        font-family: 'Kaushan Script', cursive;
+    }
+}
