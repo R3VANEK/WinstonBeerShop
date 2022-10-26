@@ -28,14 +28,19 @@ body a {
 #hamburger-wrapper {
   position: fixed;
   right: 0%;
-  height: 90px;
-  width: 90px;
+  height: 5rem;
+  width: 5rem;
   background-color: #f8bf3a;
   top: 50%;
   z-index: 3;
   display: flex;
   justify-content: center;
   align-items: center;
+}
+@media screen and (max-width: 1100px) {
+  #hamburger-wrapper {
+    top: 2%;
+  }
 }
 #hamburger-wrapper img {
   cursor: pointer;

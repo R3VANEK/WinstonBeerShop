@@ -1,16 +1,18 @@
 import React from 'react'
 
-
+import Logo from "../../images/logo.png"
 
 const HeroSection = () =>{
     return(
         <section className="full-width-section hero-section">
 
             <div id="shade-overlay">
-                <h1>Winston</h1>
 
+                <img src={Logo} id="hero-logo"/>
+
+                <h1>We craft beer<br/> Excelent beer.</h1>
                 <h2>
-                    Lorem, ipsum dolor sit amet consectetur adipisicing elit. Aliquam a eos earum tempore mollitia, sunt unde accusantium consequuntur voluptatibus dolorem excepturi possimus iure facere officia harum, magni reprehenderit ab veritatis.
+                    With unyielding enthusiasm and 70 years of experience, we deliver to you the most exquisite liquors to enjoy after hard day of work. Trust the tradition and professionalism of our brewers. Let us do the work and give yourself to the unique tastes and explore world's finest and most curated beers
                 </h2>
             </div>
 
