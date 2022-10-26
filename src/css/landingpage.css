@@ -3,13 +3,13 @@
   width: 100vw;
   position: relative;
   overflow-y: scroll;
-  -ms-scroll-snap-type: y mandatory;
-      scroll-snap-type: y mandatory;
+  scroll-snap-type: y mandatory;
   scroll-behavior: smooth;
   overflow-x: hidden;
   -ms-overflow-style: none;
   scrollbar-width: none;
 }
+
 #full-page-wrapper ::-webkit-scrollbar {
   display: none;
 }
@@ -25,4 +25,5 @@
   scroll-snap-stop: always;
   color: white;
   background-color: green;
-}/*# sourceMappingURL=landingpage.css.map */
+}
+/*# sourceMappingURL=landingpage.css.map */
