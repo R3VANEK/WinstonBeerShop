@@ -5,17 +5,22 @@ import AboutSection from './AboutSection';
 import LatestSection from './LatestSection';
 import FooterSection from './FooterSection';
 import GallerySection from './GallerySection';
+import Menu from '../shared/Menu';
+
 
 const LandingPage = () =>{
     return(
-        <main id="full-page-wrapper">
+        <>
+            <main id="full-page-wrapper">
+                <HeroSection/>
+                <AboutSection/>
+                <LatestSection/>
+                <GallerySection/>
+                <FooterSection/>
+            </main>
 
-            <HeroSection/>
-            <AboutSection/>
-            <LatestSection/>
-            <GallerySection/>
-            <FooterSection/>
-        </main>
+            <Menu/>
+        </>
     )
 }
 

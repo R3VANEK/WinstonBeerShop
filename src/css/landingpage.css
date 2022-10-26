@@ -1,32 +1,28 @@
-#full-page-wrapper{
-    height: 100vh;
-    width: 100vw;
-    position: relative;
-    overflow-y: scroll;
-    scroll-snap-type: y mandatory;
-    scroll-behavior: smooth;
-    overflow-x: hidden;
+#full-page-wrapper {
+  height: 100vh;
+  width: 100vw;
+  position: relative;
+  overflow-y: scroll;
+  -ms-scroll-snap-type: y mandatory;
+      scroll-snap-type: y mandatory;
+  scroll-behavior: smooth;
+  overflow-x: hidden;
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+#full-page-wrapper ::-webkit-scrollbar {
+  display: none;
 }
 
-#fullpage-wrapper::-webkit-scrollbar {
-    display: none;
-}
-
-#fullpage-wrapper {
-    -ms-overflow-style: none;
-    scrollbar-width: none;
-}
-
-.full-width-section{
-    width: 100vw;
-    position: relative;
-    height: 100vh;
-    scroll-snap-align: start;
-    position: relative;
-    display: flex;
-    flex-direction: column;
-    scroll-snap-stop: always;
-    color:white;
-    background-color: green;
-}
-
+.full-width-section {
+  width: 100vw;
+  position: relative;
+  height: 100vh;
+  scroll-snap-align: start;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  scroll-snap-stop: always;
+  color: white;
+  background-color: green;
+}/*# sourceMappingURL=landingpage.css.map */
