@@ -1,7 +1,14 @@
 $primaryYellow: #f8bf3a;
 $primaryBlack: #333;
 
-
+@mixin underlineStroke(){
+  bottom:0;
+  width:80%;
+  height:5px;
+  background-color: white;
+  left:10%;
+  border-radius: 50%;
+}
 
 
 body{

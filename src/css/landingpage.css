@@ -98,4 +98,83 @@ section.hero-section h2 {
     width: 60%;
     font-size: 3vw;
   }
+}
+
+.section-title {
+  font-family: "Kaushan Script", cursive;
+  font-size: 4rem;
+  position: relative;
+}
+
+.section-title::after {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  width: 80%;
+  height: 5px;
+  background-color: white;
+  left: 10%;
+  border-radius: 50%;
+}
+
+section.about-section {
+  background-color: #333;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+}
+section.about-section #about-content-wrapper {
+  margin-top: 50px;
+  width: 100%;
+  height: 60%;
+  display: flex;
+}
+section.about-section #about-content-wrapper div {
+  width: 40%;
+  margin-left: 5%;
+}
+section.about-section #about-content-wrapper div:nth-of-type(1) {
+  margin-left: 0%;
+  width: 50%;
+  position: relative;
+  background-color: #f8bf3a;
+}
+section.about-section #about-content-wrapper div:nth-of-type(1) p {
+  color: #333;
+  padding: 30px;
+  font-size: 2.4rem;
+  text-align: left;
+  border: 3px solid #333;
+  margin: 10px;
+  height: 80%;
+  transition: 0.5s cubic-bezier(0.65, -0.25, 0.25, 1.95);
+}
+section.about-section #about-content-wrapper div:nth-of-type(1) p:hover {
+  border: 5px solid #333;
+  padding: 40px;
+  font-size: 2.2rem;
+}
+section.about-section #about-content-wrapper div:nth-of-type(2) {
+  position: relative;
+}
+section.about-section #about-content-wrapper div:nth-of-type(2) img {
+  position: absolute;
+  width: 60%;
+  -o-object-fit: contain;
+     object-fit: contain;
+}
+section.about-section #about-content-wrapper div:nth-of-type(2) img:nth-of-type(1) {
+  top: -5%;
+  left: 10%;
+  z-index: 3;
+}
+section.about-section #about-content-wrapper div:nth-of-type(2) img:nth-of-type(2) {
+  top: 54%;
+  left: 5%;
+  z-index: 2;
+}
+section.about-section #about-content-wrapper div:nth-of-type(2) img:nth-of-type(3) {
+  top: -10%;
+  left: 40%;
+  z-index: 1;
 }/*# sourceMappingURL=landingpage.css.map */
