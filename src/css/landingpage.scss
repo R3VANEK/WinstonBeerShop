@@ -10,7 +10,7 @@
     scrollbar-width: none;
 
     ::-webkit-scrollbar {
-        display: none;
+        display: none !important;
     }
 }
 
@@ -25,5 +25,46 @@
     scroll-snap-stop: always;
     color:white;
     background-color: green;
+}
+
+section.hero-section{
+    background-image:url("../images/sectionImages/hero3.jpg");
+    background-position: 50% 50%;
+    background-repeat: no-repeat;
+    background-size: cover;
+
+    #shade-overlay{
+        width:100%;
+        height:100%;
+        background-color: rgba(0, 0, 0, 0.427);
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+    }
+
+    h1{
+        font-family: 'Kaushan Script', cursive;
+        font-size:8rem;
+        position: relative;
+    }
+
+    h1::before{
+        content:'';
+        position: absolute;
+        width:80%;
+        height:5px;
+        background-color:white;
+        top:100%;
+        left:10%;
+        border-radius:50%;
+    }
+
+    h2{
+        margin-bottom:10%;
+        width:30%;
+        text-align:justify;
+    }
+
 }
 

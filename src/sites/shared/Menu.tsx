@@ -8,26 +8,33 @@ const Menu = () =>{
     let [isMenuExpanded, setMenuExpanded] = useState(true);
 
     return(
-        <aside id="menu-wrapper" className={(isMenuExpanded) ? "menu-expanded" : " menu-hidden"}>
-            
+
+        <>
             <div id="hamburger-wrapper">
                 <img src={hamburger} onClick={()=>{setMenuExpanded(!isMenuExpanded)}}/>
             </div>
 
-            <ul>
-                <a href="#"><li className="menu-el">About us</li></a>
-                <a href="#"><li className="menu-el">Latest news</li></a>
-                <a href="#"><li className="menu-el">Gallery</li></a>
-            </ul>
+            <aside id="menu-wrapper" className={(isMenuExpanded) ? "menu-expanded" : " menu-hidden"}>
+            
+                <ul>
+                    <a href="#"><li className="menu-el">About us</li></a>
+                    <a href="#"><li className="menu-el">Latest news</li></a>
+                    <a href="#"><li className="menu-el">Gallery</li></a>
+                </ul>
+
+                <a href="#">
+                    <button>    
+                        Catalog 
+                    </button>   
+                </a>
+
+            </aside>
+        
+        </>
 
 
-            <a href="#">
-                <button>    
-                    Catalog 
-                </button>   
-            </a>
 
-        </aside>
+      
     )
 }
 
