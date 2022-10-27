@@ -24,7 +24,7 @@
     flex-direction: column;
     scroll-snap-stop: always;
     color:white;
-    background-color: green;
+    background-color: #333;
 }
 
 section.hero-section{
@@ -235,6 +235,23 @@ section.gallery-section{
     }
 }
 
+section.latest-section{
+    background-color:#1e1c1a;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+
+    #latest-card-wrapper{
+        display: flex;
+        align-items: center;
+        justify-content: space-around;
+        width:80%;
+
+        @media screen and (max-width:1100px){
+            flex-direction: column;
+        }
+    }
+}
 
 
 footer.footer-section{

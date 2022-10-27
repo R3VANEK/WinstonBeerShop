@@ -19,8 +19,7 @@ const AboutSection = () =>{
                 </div>
 
                 <div>
-                     <img src={BeerImage1}/>
-                     <img src={BeerImage}/>
+                     
                      <img src={BeerImage2}/>
                 </div>
             </div>

@@ -5,7 +5,7 @@ import hamburger from '../../images/hamburger.png';
 
 const Menu = () =>{
 
-    let [isMenuExpanded, setMenuExpanded] = useState(true);
+    let [isMenuExpanded, setMenuExpanded] = useState(false);
 
     return(
 
@@ -23,7 +23,7 @@ const Menu = () =>{
                 </ul>
 
                 <a href="#">
-                    <button>    
+                    <button className='catalog-button'>    
                         Catalog 
                     </button>   
                 </a>
