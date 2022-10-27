@@ -17,6 +17,13 @@ body a {
   color: #333;
 }
 
+.flex-wrapper {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+}
+
 .catalog-button {
   outline: none;
   border: none;

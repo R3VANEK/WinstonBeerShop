@@ -1,0 +1,151 @@
+#beer-details {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+}
+#beer-details main, #beer-details aside {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+#beer-details main {
+  background-color: #1e1c1a;
+  width: 65%;
+  position: relative;
+}
+#beer-details main #heading-wrapper {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+}
+#beer-details aside {
+  width: 35%;
+}
+#beer-details aside img {
+  height: 80%;
+  -o-object-fit: contain;
+     object-fit: contain;
+}
+#beer-details aside img.default-image {
+  height: 50%;
+}
+#beer-details #beer-details-h1 {
+  font-size: 6rem;
+  font-family: "Kaushan Script", cursive;
+  position: relative;
+}
+#beer-details #beer-details-h1:after {
+  content: "";
+  position: absolute;
+  width: 80%;
+  height: 5px;
+  background-color: #f8bf3a;
+  left: 0%;
+  bottom: 0%;
+  border-radius: 50%;
+}
+#beer-details #fav-and-tips-wrapper {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin-left: 15%;
+}
+#beer-details .liked-beer-wrapper {
+  margin-top: 55%;
+  width: 3rem;
+  height: 3rem;
+  border-radius: 50%;
+  outline: 3px solid #dba015;
+  background-color: none;
+  top: 1rem;
+  left: 1rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+  -moz-user-select: none;
+  -webkit-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+  transition: 0.2s cubic-bezier(0.65, -0.25, 0.25, 1.95);
+}
+#beer-details .liked-beer-wrapper.liked, #beer-details .liked-beer-wrapper:hover {
+  background-color: #dba015;
+  outline: 0px;
+}
+#beer-details .liked-beer-wrapper.liked span, #beer-details .liked-beer-wrapper:hover span {
+  color: #333;
+}
+#beer-details .liked-beer-wrapper span {
+  color: white;
+  font-weight: 500;
+}
+#beer-details #beer-description {
+  font-size: 1.5rem;
+  width: 50%;
+  letter-spacing: 1px;
+}
+#beer-details #beer-tagline {
+  width: 50%;
+  letter-spacing: 2px;
+}
+
+#overlay-full-width {
+  width: 100vw;
+  height: 100vh;
+  position: fixed;
+  z-index: 98;
+  background-color: rgba(0, 0, 0, 0.399);
+  transition: 0.2s ease-in;
+  opacity: 0;
+  display: none;
+  justify-content: center;
+  align-items: center;
+}
+#overlay-full-width.visible {
+  display: flex;
+  opacity: 1;
+}
+#overlay-full-width #brewer-tips-wrapper {
+  width: 50%;
+  height: 50%;
+  background-color: #333;
+  color: white;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  position: relative;
+}
+#overlay-full-width #brewer-tips-wrapper h2 {
+  font-family: "Kaushan Script", cursive;
+  font-size: 5rem;
+}
+#overlay-full-width #brewer-tips-wrapper .close-tip {
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: white;
+  outline: 3px solid #dba015;
+  position: absolute;
+  top: 5%;
+  right: 5%;
+  transition: 0.2s cubic-bezier(0.65, -0.25, 0.25, 1.95);
+  cursor: pointer;
+}
+#overlay-full-width #brewer-tips-wrapper .close-tip:hover {
+  background-color: #dba015;
+  color: #333;
+  outline: none;
+}
+#overlay-full-width #brewer-tips-wrapper .close-tip span {
+  font-weight: 600;
+}/*# sourceMappingURL=BeerDetails.css.map */

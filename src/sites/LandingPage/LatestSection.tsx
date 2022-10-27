@@ -2,7 +2,7 @@ import React, {useEffect, useState} from 'react'
 
 import Test from '../../images/sectionImages/test.png'
 
-import BeerCard from '../shared/BeerCard'
+import BeerCard from '../Shared/BeerCard'
 
 
 type PunkAPIBeerObject = {
@@ -57,13 +57,13 @@ const LatestSection = () =>{
 
     let LatestBeerCards = latestBeers.map((beer)=>{
         return(
-            <BeerCard width="15vw" height="45vh" beerName={beer.name} image={beer.image_url} key={beer.id}/>
+            <BeerCard beerId={beer.id} width="15vw" height="45vh" beerName={beer.name} image={beer.image_url} key={beer.id}/>
         )
     })
 
 
     return(
-        <section className="full-width-section latest-section" >
+        <section className="full-width-section latest-section" id="latest-section">
 
             <h2 className="section-title">Latest hits</h2>
 

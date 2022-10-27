@@ -4,7 +4,7 @@ import Logo from "../../images/logo.png"
 
 const HeroSection = () =>{
     return(
-        <section className="full-width-section hero-section">
+        <section className="full-width-section hero-section" id="hero-section">
 
             <div id="shade-overlay">
 

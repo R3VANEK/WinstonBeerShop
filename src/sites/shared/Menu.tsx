@@ -17,9 +17,9 @@ const Menu = () =>{
             <aside id="menu-wrapper" className={(isMenuExpanded) ? "menu-expanded" : " menu-hidden"}>
             
                 <ul>
-                    <a href="#"><li className="menu-el">About us</li></a>
-                    <a href="#"><li className="menu-el">Latest news</li></a>
-                    <a href="#"><li className="menu-el">Gallery</li></a>
+                    <a href="#about-section"><li className="menu-el">About us</li></a>
+                    <a href="#latest-section"><li className="menu-el">Latest news</li></a>
+                    <a href="#gallery-section"><li className="menu-el">Gallery</li></a>
                 </ul>
 
                 <a href="#">

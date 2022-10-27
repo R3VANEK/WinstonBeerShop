@@ -7,7 +7,7 @@ import BeerImage2 from '../../images/sectionImages/about.jpg'
 
 const AboutSection = () =>{
     return(
-        <section className="full-width-section about-section">
+        <section className="full-width-section about-section" id="about-section">
 
             <h2 className="section-title">About us</h2>
 

@@ -1,8 +1,9 @@
-import React, {useState} from 'react'
+import React, {useState, useEffect} from 'react'
 
 import defaultBeerImage from '../../images/defaultBeer.png'
 
 type BeerProps = {
+    beerId: number,
     width: string,
     height: string,
     beerName: string,
@@ -16,42 +17,47 @@ const BeerCard = (props:BeerProps) =>{
     let [isLiked, setIsLiked] = useState(false)
     let trueImage = (props.image === null) ? defaultBeerImage : props.image;
 
+    useEffect(()=>{
+        if(localStorage.getItem(props.beerId.toString()) !== null)
+            setIsLiked(true);
+    }, [])
 
-    //TODO logika znajdywania czy dane piwo jest polubione przez localStorage
 
     const likeBeerClicked = () =>{
-         //TODO logika zmiany w localStorage liked
+        localStorage.setItem(props.beerId.toString(), "liked");
         setIsLiked(!isLiked);
     }
 
     return(
 
-        <a href="#">
+        
             <article className="beer-card" style={{width:props.width, height:props.height}}>
 
-            {/* tu trzeba ekstraktować pierwszy tagline */}
-            {/* <p className="beer-right-flipped">Post Modern Classic</p> */}
+                {/* tu trzeba ekstraktować pierwszy tagline */}
+                {/* <p className="beer-right-flipped">Post Modern Classic</p> */}
 
 
-            <div className={(isLiked) ? "liked-beer-wrapper liked" : "liked-beer-wrapper"}>
-                <span className="material-symbols-outlined" onClick={likeBeerClicked}>favorite</span>
-            </div>
+                <div className={(isLiked) ? "liked-beer-wrapper liked" : "liked-beer-wrapper"}>
+                    <span className="material-symbols-outlined" onClick={likeBeerClicked}>favorite</span>
+                </div>
 
-            <div className="beer-image-wrapper">
-                <img src={trueImage} 
-                    alt={props.beerName + " image"} 
-                    className='beer-image' 
-                    style={(props.image === null) ? {height:"40%"} : {}}
-                />
-            </div>
-            
+                <a href={`/beer-details/${props.beerId}`} style={{width:"100%", height:"100%"}}>
+                    <div className="beer-image-wrapper">
+                        <img src={trueImage} 
+                            alt={props.beerName + " image"} 
+                            className='beer-image' 
+                            loading='lazy'
+                            style={(props.image === null) ? {height:"40%"} : {}}
+                        />
+                    </div>
+                    
 
-            <div className="beer-name-wrapper">
-                <p className='beer-name'>{props.beerName}</p>
-            </div>
-            
+                    <div className="beer-name-wrapper">
+                        <p className='beer-name'>{props.beerName}</p>
+                    </div>
+                </a>
             </article>
-        </a>
+       
         
     )
 }
