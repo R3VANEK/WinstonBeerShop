@@ -2,7 +2,7 @@ import React, {useEffect, useState} from 'react'
 
 import Test from '../../images/sectionImages/test.png'
 
-import BeerCard from '../Shared/BeerCard'
+import BeerCard from '../shared/BeerCard'
 
 
 type PunkAPIBeerObject = {

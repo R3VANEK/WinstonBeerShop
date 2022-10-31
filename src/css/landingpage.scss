@@ -209,6 +209,11 @@ section.gallery-section{
     background-repeat: no-repeat;
     background-size: cover;
 
+    @media screen and (max-width:1000px){
+        flex-direction: column;
+      }
+
+
     .gallery-el{
         width:33.3%;
         height:100%;
@@ -221,6 +226,7 @@ section.gallery-section{
         color:white;
         transition: 0.3s ease-in-out;
         cursor: pointer;
+        text-align: center  ;
 
         &:hover{
             color:#f8bf3a
@@ -232,6 +238,12 @@ section.gallery-section{
         &:nth-of-type(2){
             background-color: rgba(51, 51, 51, 0.806); 
         }
+
+        @media screen and (max-width:1000px){
+            width:100%;
+            flex-direction: row;
+          }
+    
     }
 }
 
