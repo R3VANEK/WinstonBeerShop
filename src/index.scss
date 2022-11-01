@@ -10,6 +10,12 @@ $primaryBlack: #333;
   border-radius: 50%;
 }
 
+*{
+  scrollbar-width: none !important;
+  ::-webkit-scrollbar {
+    display: none !important;
+  }
+}
 
 body{
   margin:0;
@@ -18,10 +24,11 @@ body{
   scroll-snap-type: y mandatory;
   scroll-behavior: smooth;
   position: relative;
-  overflow: hidden;
+  overflow-x: hidden;
   scrollbar-width: none !important;
   ::-webkit-scrollbar {
     display: none !important;
+
 }
 
   a{

@@ -34,7 +34,7 @@
   height: 50%;
 }
 #beer-details #beer-details-h1 {
-  font-size: 6rem;
+  font-size: 3rem;
   font-family: "Kaushan Script", cursive;
   position: relative;
 }
@@ -89,6 +89,7 @@
   font-size: 1.5rem;
   width: 50%;
   letter-spacing: 1px;
+  overflow-y: scroll;
 }
 #beer-details #beer-tagline {
   width: 50%;

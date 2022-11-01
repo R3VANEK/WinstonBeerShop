@@ -6,6 +6,8 @@ import './css/landingpage.css'
 
 import LandingPage from './sites/LandingPage/LandingPage';
 import BeerDetails from './sites/BeerDetails/BeerDetails';
+import Catalog from './sites/Catalog/Catalog';
+
 
 const router = createBrowserRouter([
   {
@@ -15,6 +17,10 @@ const router = createBrowserRouter([
   {
     path: "beer-details/:beerId",
     element: <BeerDetails/>
+  },
+  {
+    path: "catalog",
+    element: <Catalog/>
   }
 ]);
 

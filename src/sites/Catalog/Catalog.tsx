@@ -1,7 +1,8 @@
-import React, {useEffect, useState} from 'react'
+import React, {useState, useEffect} from 'react'
+import './catalog.css'
 
-import Test from '../../images/sectionImages/test.png'
-
+import Logo from "../../images/logo.png"
+import Menu from '../shared/Menu'
 import BeerCard from '../shared/BeerCard'
 
 
@@ -20,8 +21,7 @@ type PunkAPIBeerObject = {
 }
 
 
-const LatestSection = () =>{
-
+const Catalog = () =>{
 
 
     let [latestBeers, setLatestBeers] = useState<PunkAPIBeerObject[] | []>([])
@@ -30,7 +30,7 @@ const LatestSection = () =>{
 
         
         const h = async function(){
-            for(let i = 0; i < 2; i++){
+            for(let i = 0; i < 10; i++){
                 fetch('https://api.punkapi.com/v2/beers/random',{
                     method:"GET"
                 })
@@ -51,28 +51,44 @@ const LatestSection = () =>{
 
     let LatestBeerCards = latestBeers.map((beer)=>{
         return(
-            <BeerCard beerId={beer.id} width="15vw" height="45vh" beerName={beer.name} image={beer.image_url} key={beer.id}/>
+            <BeerCard beerId={beer.id} width="20vw" height="45vh" beerName={beer.name} image={beer.image_url} key={beer.id}/>
         )
     })
 
 
+
+
     return(
-        <section className="full-width-section latest-section" id="latest-section">
+        <>
 
-            <h2 className="section-title">Latest hits</h2>
+            <Menu/>
 
-            <div id="latest-card-wrapper">
-               {LatestBeerCards}
-            </div>
+            <section id="catalog-hero">
 
-            <a href="#">
-                <button className='catalog-button' style={{marginTop:"10vh"}}>    
-                    Catalog 
-                </button>   
-            </a>
+                <div id="shade-overlay">
+                    <img src={Logo} id="hero-logo"/>
+                    <h1>Catalog.</h1>
+                </div>
 
-        </section>
+            </section>
+
+            <main id="catalog-main">
+
+               
+
+               
+
+
+                <section id="card-holder">
+                    {LatestBeerCards}
+                </section>
+
+            </main>
+
+
+
+        </>
     )
 }
 
-export default LatestSection;
+export default Catalog
