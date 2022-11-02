@@ -26,8 +26,9 @@ const Catalog = () =>{
 
 
     let [beerList, setBeerList] = useState<PunkAPIBeerObject[] | []>([])
-    let [pageAPINumber ,setPageAPINumber] = useState(1)
+    let [pageAPINumber ,setPageAPINumber] = useState(1);
     let [beerName, setBeerName] = useState("");
+    let [catalogState, setCatalogState] = useState("beer");
 
 
     // zbindowanie eventu scrolla do przeglądarki
@@ -35,7 +36,7 @@ const Catalog = () =>{
         window.addEventListener('scroll', ()=>{
 
             if(window.innerHeight + document.documentElement.scrollTop
-                > document.documentElement.offsetHeight * 0.9){
+                > document.documentElement.offsetHeight * 0.9 && catalogState === "beer"){
                     setPageAPINumber(pageAPINumber++)
                 }
         })
@@ -44,6 +45,10 @@ const Catalog = () =>{
     // fetch osbługujący infinite scrolla
     useEffect(()=>{
 
+        if(catalogState !== "beer")
+            return;
+
+        
         fetch(`https://api.punkapi.com/v2/beers?page=${pageAPINumber}&per_page=15`, {method:"GET"})
         .then((res)=>{return res.json()})
         .then((res)=>{
@@ -73,7 +78,47 @@ const Catalog = () =>{
     
         return () => clearTimeout(getData)
       
-      }, [beerName])
+    }, [beerName])
+
+
+    useEffect(()=>{
+
+        if(catalogState === "favorites"){
+
+            setBeerList(beerList = [])
+
+            let favoriteBeers = []
+
+            for(let i =0; i < localStorage.length; i++){
+
+                const key = localStorage.key(i) || '0';
+                // zabezpieczenie przed innymi wartościami w localStorage
+                if(!(localStorage.getItem(key) === 'liked'))
+                    continue;
+
+                fetch(`https://api.punkapi.com/v2/beers/${key}`, {method:"GET"})
+                .then((res) => {return res.json()})
+                .then((res) =>{
+                    let response:PunkAPIBeerObject[] = res
+                    console.log(response)
+                    setBeerList(beerList = [...beerList, ...response])
+                })
+            }
+
+
+        }
+
+    }, [catalogState])
+
+
+
+    const changeCatalogType = (mode:string) =>{
+       
+        setCatalogState(mode)
+    }
+
+
+
 
 
 
@@ -110,11 +155,12 @@ const Catalog = () =>{
 
                
                 <section id="catalog-type-wrapper">
-                    <div className="catalog-type">
+
+                    <div className={catalogState === "beer" ? "catalog-type active" : "catalog-type"} onClick={() =>{changeCatalogType("beer")}}>
                         <h2>Our products</h2>
                         <p>Discover all of our finest collection of homebrew beers</p>
                     </div>
-                    <div className="catalog-type">
+                    <div className={catalogState === "favorites" ? "catalog-type active" : "catalog-type"} onClick={() =>{changeCatalogType("favorites")}}>
                         <h2>Your favorites</h2>
                         <p>Tested and loved. These beers are the closest to your heart and taste</p>
                     </div>
