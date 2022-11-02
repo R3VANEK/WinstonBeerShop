@@ -4,6 +4,7 @@ import './catalog.css'
 import Logo from "../../images/logo.png"
 import Menu from '../shared/Menu'
 import BeerCard from '../shared/BeerCard'
+import ScrollHelp from '../shared/ScrollHelp'
 
 
 type PunkAPIBeerObject = {
@@ -29,18 +30,18 @@ const Catalog = () =>{
     let [beerName, setBeerName] = useState("");
 
 
+    // zbindowanie eventu scrolla do przeglądarki
     useEffect(()=>{
         window.addEventListener('scroll', ()=>{
 
-            console.log((window.innerHeight + document.documentElement.scrollTop) + " " + document.documentElement.offsetHeight)
-
             if(window.innerHeight + document.documentElement.scrollTop
-                > document.documentElement.offsetHeight){
+                > document.documentElement.offsetHeight * 0.9){
                     setPageAPINumber(pageAPINumber++)
                 }
         })
     })
 
+    // fetch osbługujący infinite scrolla
     useEffect(()=>{
 
         fetch(`https://api.punkapi.com/v2/beers?page=${pageAPINumber}&per_page=15`, {method:"GET"})
@@ -50,12 +51,11 @@ const Catalog = () =>{
             setBeerList(beerList = [...beerList, ...response])
         })
 
-
-        
-
     }, [pageAPINumber])
 
 
+    // fetch przy korzystaniu z inputa zaimplementowany z debouncem
+    // dla optymalizacji aplikacji
     useEffect(() => {
         const getData = setTimeout(() => {
 
@@ -87,8 +87,6 @@ const Catalog = () =>{
     const searchBeer = (e: React.FormEvent<HTMLInputElement>) =>{
         const beerName = e.currentTarget.value;
         setBeerName(e.currentTarget.value)
-
-
     }
 
 
@@ -97,6 +95,7 @@ const Catalog = () =>{
         <>
 
             <Menu/>
+            <ScrollHelp/>
 
             <section id="catalog-hero">
 

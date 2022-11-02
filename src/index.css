@@ -1,5 +1,6 @@
 * {
   scrollbar-width: none !important;
+  scroll-behavior: smooth;
 }
 * ::-webkit-scrollbar {
   display: none !important;
@@ -234,4 +235,29 @@ body a {
   font-size: 1rem;
   justify-self: flex-end;
   align-items: center;
+}
+
+#scroll-div {
+  position: fixed;
+  width: 90px;
+  height: 90px;
+  top: 80%;
+  right: 5%;
+  border-radius: 50%;
+  z-index: 4;
+  display: none;
+  justify-content: center;
+  background-color: #f8bf3a;
+  cursor: pointer;
+}
+#scroll-div #scroll-arrow {
+  margin-top: 35px;
+  width: 30px;
+  height: 30px;
+  border-top: 5px solid #333;
+  border-left: 5px solid rgb(100, 100, 100);
+  transform: rotate(45deg);
+}
+#scroll-div.scroll-visible {
+  display: flex !important;
 }/*# sourceMappingURL=index.css.map */
