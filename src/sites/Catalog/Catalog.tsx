@@ -24,37 +24,72 @@ type PunkAPIBeerObject = {
 const Catalog = () =>{
 
 
-    let [latestBeers, setLatestBeers] = useState<PunkAPIBeerObject[] | []>([])
+    let [beerList, setBeerList] = useState<PunkAPIBeerObject[] | []>([])
+    let [pageAPINumber ,setPageAPINumber] = useState(1)
+    let [beerName, setBeerName] = useState("");
+
+
+    useEffect(()=>{
+        window.addEventListener('scroll', ()=>{
+
+            console.log((window.innerHeight + document.documentElement.scrollTop) + " " + document.documentElement.offsetHeight)
+
+            if(window.innerHeight + document.documentElement.scrollTop
+                > document.documentElement.offsetHeight){
+                    setPageAPINumber(pageAPINumber++)
+                }
+        })
+    })
 
     useEffect(()=>{
 
+        fetch(`https://api.punkapi.com/v2/beers?page=${pageAPINumber}&per_page=15`, {method:"GET"})
+        .then((res)=>{return res.json()})
+        .then((res)=>{
+            let response:PunkAPIBeerObject[] = res
+            setBeerList(beerList = [...beerList, ...response])
+        })
+
+
         
-        const h = async function(){
-            for(let i = 0; i < 10; i++){
-                fetch('https://api.punkapi.com/v2/beers/random',{
-                    method:"GET"
-                })
-                .then((res)=>{return res.json()})
-                .then((res)=>{
-                    let response:PunkAPIBeerObject[] = res
-                    
-                    setLatestBeers(latestBeers = [...latestBeers, ...response])
-                })
-                .then(()=>{
-                    console.log(latestBeers)
-                })
-            }
-        }
 
-        h()
-    }, [])
+    }, [pageAPINumber])
 
-    let LatestBeerCards = latestBeers.map((beer)=>{
+
+    useEffect(() => {
+        const getData = setTimeout(() => {
+
+            fetch(`https://api.punkapi.com/v2/beers?beer_name=${beerName}`, {method:"GET"})
+            .then((res)=>{
+                return res.json()
+            })
+            .then((res)=>{
+                let response:PunkAPIBeerObject[] = res
+                setBeerList(beerList = [...beerList, ...response])
+            })
+
+        },1000)
+    
+    
+        return () => clearTimeout(getData)
+      
+      }, [beerName])
+
+
+
+    let LatestBeerCards = beerList.map((beer)=>{
         return(
             <BeerCard beerId={beer.id} width="20vw" height="45vh" beerName={beer.name} image={beer.image_url} key={beer.id}/>
         )
     })
 
+
+    const searchBeer = (e: React.FormEvent<HTMLInputElement>) =>{
+        const beerName = e.currentTarget.value;
+        setBeerName(e.currentTarget.value)
+
+
+    }
 
 
 
@@ -75,9 +110,20 @@ const Catalog = () =>{
             <main id="catalog-main">
 
                
-
+                <section id="catalog-type-wrapper">
+                    <div className="catalog-type">
+                        <h2>Our products</h2>
+                        <p>Discover all of our finest collection of homebrew beers</p>
+                    </div>
+                    <div className="catalog-type">
+                        <h2>Your favorites</h2>
+                        <p>Tested and loved. These beers are the closest to your heart and taste</p>
+                    </div>
+                </section>
                
-
+                <div id="input-wrapper">
+                    <input type="text" placeholder="type name of beer" onChange={searchBeer} />
+                </div>
 
                 <section id="card-holder">
                     {LatestBeerCards}

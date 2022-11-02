@@ -41,9 +41,8 @@
 
 #catalog-main{
     width:100vw;
-
-    height:65vh;
-    background-color: #333;
+    height:auto;
+    background-color: rgb(40, 39, 39);
     display: flex;
     flex-direction: column;
     justify-content: flex-start;
@@ -56,40 +55,45 @@
         padding:15px;
     }
 
-
     #catalog-type-wrapper{
-        width:100vw;
-            display: flex;
+        width:90vw;
+        height:auto;
+        display: flex;
         flex-direction: row;
-        justify-content: center;
+        justify-content: space-between;
         align-items: center;
-        border-bottom: 3px solid rgb(94, 94, 94);
 
-        div{
-            margin-right:5%;
-            cursor: pointer;
-            width:10%;
-            height:15px;
-            padding:5px;
+        .catalog-type{
+            width:45%;
+            height:15vh;
+            background-color: #333;
             color:white;
-            margin-bottom:-3px;
-            border-bottom:3px solid rgb(94, 94, 94);
             display: flex;
-            flex-direction: row;
-            justify-content: space-between;
-            align-items: center;
-            transition:0.3s cubic-bezier(0.075, 0.82, 0.165, 1);
+            flex-direction: column;
+            justify-content: center;
+            align-items: flex-start;
+            padding:20px;
+            margin-top:5%;
+            margin-bottom:5%;
+            cursor: pointer;
+            transition: 0.4s  ease-in-out;
+
+            h2{
+                font-family: 'Kaushan Script', cursive;
+                font-size:2rem;
+            }
+            p{
+                letter-spacing: 2px;
+            }
 
             &:hover{
-                border-bottom:3px solid #f8bf3a;
-
-                .count-bubble{
-                    background-color: #f8bf3a;
-                    color:#333
-                }
+                background-color: #dba015;
+                color:#333;
             }
         }
     }
+   
+    
 }
 
 .count-bubble{
@@ -105,9 +109,10 @@
 }
 
 #card-holder{
-    width:100vw;
+    border-top:3px solid grey;
+    width:90vw;
     height: auto;
-    background-color: rgb(40, 39, 39);;
+    background-color: rgb(40, 39, 39);
     align-self:center;
     display: flex;
     flex-wrap: wrap;
