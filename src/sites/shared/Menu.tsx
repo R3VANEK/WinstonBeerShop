@@ -1,4 +1,5 @@
 import React, {useState} from 'react'
+import {Link} from "react-router-dom";
 
 
 import hamburger from '../../images/hamburger.png';
@@ -22,11 +23,11 @@ const Menu = () =>{
                     <a href="#gallery-section"><li className="menu-el">Gallery</li></a>
                 </ul>
 
-                <a href="#">
+                <Link to={"catalog"}>
                     <button className='catalog-button'>    
                         Catalog 
                     </button>   
-                </a>
+                </Link>
 
             </aside>
         

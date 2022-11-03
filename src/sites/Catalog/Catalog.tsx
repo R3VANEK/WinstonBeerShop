@@ -1,4 +1,5 @@
 import React, {useState, useEffect} from 'react'
+import {Link} from 'react-router-dom'
 import './catalog.css'
 
 import Logo from "../../images/logo.png"
@@ -147,7 +148,10 @@ const Catalog = () =>{
             <section id="catalog-hero">
 
                 <div id="shade-overlay">
-                    <img src={Logo} id="hero-logo"/>
+                    <Link to={"/"}>
+                        <img src={Logo} id="hero-logo"/>
+                    </Link>
+                    
                     <h1>Catalog.</h1>
                 </div>
 

@@ -1,6 +1,5 @@
 import React, {useEffect, useState} from 'react'
-
-import Test from '../../images/sectionImages/test.png'
+import {Link} from 'react-router-dom'
 
 import BeerCard from '../shared/BeerCard'
 
@@ -65,11 +64,11 @@ const LatestSection = () =>{
                {LatestBeerCards}
             </div>
 
-            <a href="#">
+            <Link to={"catalog"}>
                 <button className='catalog-button' style={{marginTop:"10vh"}}>    
                     Catalog 
                 </button>   
-            </a>
+            </Link>
 
         </section>
     )
