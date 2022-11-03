@@ -50,7 +50,7 @@ const LatestSection = () =>{
 
     let LatestBeerCards = latestBeers.map((beer)=>{
         return(
-            <BeerCard beerId={beer.id} width="15vw" height="45vh" beerName={beer.name} image={beer.image_url} key={beer.id}/>
+            <BeerCard beerId={beer.id}  beerName={beer.name} image={beer.image_url} key={beer.id}/>
         )
     })
 

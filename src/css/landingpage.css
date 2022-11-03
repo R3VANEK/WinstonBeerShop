@@ -236,31 +236,10 @@ section.latest-section #latest-card-wrapper {
   justify-content: space-around;
   width: 80%;
 }
-@media screen and (max-width: 900px) {
-  section.latest-section #latest-card-wrapper {
-    flex-direction: column;
-  }
-  section.latest-section #latest-card-wrapper .beer-card {
-    width: 80vw !important;
-    margin-top: 2vh;
-    height: 12vh !important;
-    flex-direction: row;
-  }
-  section.latest-section #latest-card-wrapper .beer-card a {
-    display: flex;
-  }
-  section.latest-section #latest-card-wrapper .beer-card .beer-image-wrapper {
-    width: 60%;
-    height: 100%;
-  }
-  section.latest-section #latest-card-wrapper .beer-card .beer-name-wrapper {
-    width: 40%;
-    height: 100%;
-    border-top: none;
-  }
-  section.latest-section #latest-card-wrapper .catalog-button {
-    margin-top: 0vh;
-  }
+section.latest-section #latest-card-wrapper .beer-card {
+  width: 20vh;
+  padding: 1vw;
+  margin-left: 2vw;
 }
 
 @media screen and (max-width: 900px) {

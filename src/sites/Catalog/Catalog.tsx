@@ -108,7 +108,8 @@ const Catalog = () =>{
             }
         }
         else if(catalogState === "beer"){
-            setPageAPINumber(1);
+            setBeerList(beerList = [])
+            setPageAPINumber(2);
         }
 
     }, [catalogState])
@@ -127,7 +128,7 @@ const Catalog = () =>{
 
     let LatestBeerCards = beerList.map((beer)=>{
         return(
-            <BeerCard beerId={beer.id} width="20vw" height="45vh" beerName={beer.name} image={beer.image_url} key={beer.id}/>
+            <BeerCard beerId={beer.id} beerName={beer.name} image={beer.image_url} key={beer.id}/>
         )
     })
 
@@ -151,7 +152,7 @@ const Catalog = () =>{
                     <Link to={"/"}>
                         <img src={Logo} id="hero-logo"/>
                     </Link>
-                    
+
                     <h1>Catalog.</h1>
                 </div>
 
@@ -173,7 +174,8 @@ const Catalog = () =>{
                 </section>
                
                 <div id="input-wrapper">
-                    <input type="text" placeholder="type name of beer" onChange={searchBeer} />
+                    <span className="material-symbols-outlined">search</span>
+                    <input type="text" placeholder="search beer by name" onChange={searchBeer} />
                 </div>
 
                 <section id="card-holder">

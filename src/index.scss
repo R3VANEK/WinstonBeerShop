@@ -186,14 +186,18 @@ body{
   align-items: center;
   cursor: pointer;
   transition: 0.3s cubic-bezier(0.075, 0.82, 0.165, 1);
+  height:auto;
+
 
   &:hover{
     transform: scale(1.2);
   }
 
   .beer-image{
-    height:70%;
+    height:200px;
     max-width: 80%;
+    margin-top: 20px;
+    margin-bottom:20px;
     object-fit: contain;
   }
 
@@ -261,7 +265,7 @@ body{
     color:rgb(167, 167, 167);
     font-family: 'Kaushan Script', cursive;
     margin-left:5%;
-    font-size:1rem;
+    font-size:1.2rem;
     justify-self: flex-end;
     align-items: center;
   }

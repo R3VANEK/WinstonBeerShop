@@ -4,8 +4,6 @@ import defaultBeerImage from '../../images/defaultBeer.png'
 
 type BeerProps = {
     beerId: number,
-    width: string,
-    height: string,
     beerName: string,
     image: string | null,
     key?: number
@@ -36,7 +34,7 @@ const BeerCard = (props:BeerProps) =>{
     return(
 
         
-            <article className="beer-card" style={{width:props.width, height:props.height}}>
+            <article className="beer-card">
 
                 {/* tu trzeba ekstraktować pierwszy tagline */}
                 {/* <p className="beer-right-flipped">Post Modern Classic</p> */}

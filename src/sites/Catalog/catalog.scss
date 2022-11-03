@@ -50,9 +50,28 @@
     align-content: center;
 
     #input-wrapper{
-        width:20%;
-        line-height:2;
+        line-height:1;
         padding:15px;
+        background-color: rgb(207, 207, 207);
+        border-radius:2rem;
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+        align-items: center;
+        margin-bottom:50px;
+
+        span{
+            font-size:2rem;
+        }
+
+        input{
+            outline:none;
+            background-color: inherit;
+            color:black;
+            border:none;
+            font-size: 1.15rem;
+            line-height: 2;
+        }
     }
 
     #catalog-type-wrapper{
@@ -65,7 +84,7 @@
 
         .catalog-type{
             width:45%;
-            height:15vh;
+            height:auto;
             background-color: #333;
             color:white;
             display: flex;
@@ -92,7 +111,6 @@
 
             &:hover{
                 background-color: #dba015;
-                color:#333;
             }
         }
     }
@@ -129,5 +147,13 @@
         margin-left:3%;
         margin-top:5%;
         margin-bottom:2.5%;
+        height:auto;
+        width:23vw;
+
+        .beer-image-wrapper img{
+            height:250px;
+            margin-top:20px;
+            margin-bottom:20px;
+        }
     }
 }
