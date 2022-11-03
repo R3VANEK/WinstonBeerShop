@@ -48,6 +48,7 @@ const Catalog = () =>{
         if(catalogState !== "beer")
             return;
 
+        console.log("scroll fetch")
         
         fetch(`https://api.punkapi.com/v2/beers?page=${pageAPINumber}&per_page=15`, {method:"GET"})
         .then((res)=>{return res.json()})
@@ -104,8 +105,9 @@ const Catalog = () =>{
                     setBeerList(beerList = [...beerList, ...response])
                 })
             }
-
-
+        }
+        else if(catalogState === "beer"){
+            setPageAPINumber(1);
         }
 
     }, [catalogState])

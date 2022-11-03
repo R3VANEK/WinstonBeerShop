@@ -24,7 +24,12 @@ const BeerCard = (props:BeerProps) =>{
 
 
     const likeBeerClicked = () =>{
-        localStorage.setItem(props.beerId.toString(), "liked");
+
+        if(isLiked)
+            localStorage.removeItem(props.beerId.toString());    
+        else
+            localStorage.setItem(props.beerId.toString(), "liked");
+            
         setIsLiked(!isLiked);
     }
 
