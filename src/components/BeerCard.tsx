@@ -1,16 +1,13 @@
 import React, {useState, useEffect} from 'react'
 
+import { BeerCardProps } from '../types/PropsTypes'
+
 import defaultBeerImage from '../../images/defaultBeer.png'
 
-type BeerProps = {
-    beerId: number,
-    beerName: string,
-    image: string | null,
-    key?: number
-}
 
 
-const BeerCard = (props:BeerProps) =>{
+
+const BeerCard = (props:BeerCardProps) =>{
 
     let [isLiked, setIsLiked] = useState(false)
     let trueImage = (props.image === null) ? defaultBeerImage : props.image;

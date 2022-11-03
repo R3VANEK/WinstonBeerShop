@@ -5,7 +5,7 @@ import AboutSection from './AboutSection';
 import LatestSection from './LatestSection';
 import FooterSection from './FooterSection';
 import GallerySection from './GallerySection';
-import Menu from '../shared/Menu';
+import Menu from '../Menu';
 
 
 const LandingPage = () =>{

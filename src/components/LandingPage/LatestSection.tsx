@@ -1,29 +1,19 @@
 import React, {useEffect, useState} from 'react'
 import {Link} from 'react-router-dom'
 
-import BeerCard from '../shared/BeerCard'
+import { PunkShortBeer } from '../../types/APITypes'
+
+import BeerCard from '../BeerCard'
 
 
-type PunkAPIBeerObject = {
-    id: number,
-    name: string,
-    tagline: string,
-    first_brewed: string,
-    description: string,
-    image_url: string | null,
-    volume : {value: string, unit: string},
-    boil_volume: {value: string, unit: string},
-    food_pairing: string[],
-    brewers_tips: string    
 
-}
 
 
 const LatestSection = () =>{
 
 
 
-    let [latestBeers, setLatestBeers] = useState<PunkAPIBeerObject[] | []>([])
+    let [latestBeers, setLatestBeers] = useState<PunkShortBeer[] | []>([])
 
     useEffect(()=>{
 
@@ -35,7 +25,7 @@ const LatestSection = () =>{
                 })
                 .then((res)=>{return res.json()})
                 .then((res)=>{
-                    let response:PunkAPIBeerObject[] = res
+                    let response:PunkShortBeer[] = res
                     
                     setLatestBeers(latestBeers = [...latestBeers, ...response])
                 })

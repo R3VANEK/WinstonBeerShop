@@ -2,31 +2,21 @@ import React, {useState, useEffect} from 'react'
 import {Link} from 'react-router-dom'
 import './catalog.css'
 
+import { PunkFullBeer } from '../../types/APITypes'
+
 import Logo from "../../images/logo.png"
-import Menu from '../shared/Menu'
-import BeerCard from '../shared/BeerCard'
-import ScrollHelp from '../shared/ScrollHelp'
+import Menu from '../Menu'
+import BeerCard from '../BeerCard'
+import ScrollHelp from '../ScrollHelp'
 
 
-type PunkAPIBeerObject = {
-    id: number,
-    name: string,
-    tagline: string,
-    first_brewed: string,
-    description: string,
-    image_url: string | null,
-    volume : {value: string, unit: string},
-    boil_volume: {value: string, unit: string},
-    food_pairing: string[],
-    brewers_tips: string    
 
-}
 
 
 const Catalog = () =>{
 
 
-    let [beerList, setBeerList] = useState<PunkAPIBeerObject[] | []>([])
+    let [beerList, setBeerList] = useState<PunkFullBeer[] | []>([])
     let [pageAPINumber ,setPageAPINumber] = useState(1);
     let [beerName, setBeerName] = useState("");
     let [catalogState, setCatalogState] = useState("beer");
@@ -54,7 +44,7 @@ const Catalog = () =>{
         fetch(`https://api.punkapi.com/v2/beers?page=${pageAPINumber}&per_page=15`, {method:"GET"})
         .then((res)=>{return res.json()})
         .then((res)=>{
-            let response:PunkAPIBeerObject[] = res
+            let response:PunkFullBeer[] = res
             setBeerList(beerList = [...beerList, ...response])
         })
 
@@ -71,7 +61,7 @@ const Catalog = () =>{
                 return res.json()
             })
             .then((res)=>{
-                let response:PunkAPIBeerObject[] = res
+                let response:PunkFullBeer[] = res
                 setBeerList(beerList = [...beerList, ...response])
             })
 
@@ -86,7 +76,8 @@ const Catalog = () =>{
     useEffect(()=>{
 
         if(catalogState === "favorites"){
-
+            
+            //TODO wyeliminuj to żeby nie było bounca
             setBeerList(beerList = [])
 
             let favoriteBeers = []
@@ -101,13 +92,14 @@ const Catalog = () =>{
                 fetch(`https://api.punkapi.com/v2/beers/${key}`, {method:"GET"})
                 .then((res) => {return res.json()})
                 .then((res) =>{
-                    let response:PunkAPIBeerObject[] = res
+                    let response:PunkFullBeer[] = res
                     console.log(response)
                     setBeerList(beerList = [...beerList, ...response])
                 })
             }
         }
         else if(catalogState === "beer"){
+            //TODO wyeliminuj to żeby nie było bounca
             setBeerList(beerList = [])
             setPageAPINumber(2);
         }
