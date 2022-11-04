@@ -2,7 +2,7 @@ import React, {useState} from 'react'
 import {Link} from "react-router-dom";
 
 
-import hamburger from '../../images/hamburger.png';
+import hamburger from '../images/hamburger.png';
 
 const Menu = () =>{
 

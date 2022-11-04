@@ -7,20 +7,27 @@ import './css/landingpage.css'
 import LandingPage from './components/LandingPage/LandingPage';
 import BeerDetails from './components/BeerDetails/BeerDetails';
 import Catalog from './components/Catalog/Catalog';
+import ErrorPage from './components/ErrorPage/ErrorPage';
+
+import { detailsLoader } from './router-loaders/detailsLoader';
 
 
 const router = createBrowserRouter([
   {
     path: "/",
-    element: <LandingPage/>
+    element: <LandingPage/>,
+    errorElement: <ErrorPage />
   },
   {
     path: "beer-details/:beerId",
-    element: <BeerDetails/>
+    element: <BeerDetails/>,
+    loader: detailsLoader,
+    errorElement: <ErrorPage />
   },
   {
     path: "catalog",
-    element: <Catalog/>
+    element: <Catalog/>,
+    errorElement: <ErrorPage />
   }
 ]);
 

@@ -4,3 +4,7 @@ export interface BeerCardProps {
     image: string | null,
     key?: number
 }
+
+export interface BeerDetailsProps {
+    beerId:number
+}

@@ -2,7 +2,7 @@ import React, {useState, useEffect} from 'react'
 
 import { BeerCardProps } from '../types/PropsTypes'
 
-import defaultBeerImage from '../../images/defaultBeer.png'
+import defaultBeerImage from '../images/defaultBeer.png'
 
 
 

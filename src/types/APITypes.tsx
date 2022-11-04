@@ -17,3 +17,9 @@ export interface PunkShortBeer {
     name: string,
     image_url: string
 }
+
+export interface PunkErrorObject{
+    statusCode:number,
+    error:string,
+    message:string
+}
