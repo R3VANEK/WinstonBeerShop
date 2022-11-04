@@ -29,9 +29,6 @@ const LatestSection = () =>{
                     
                     setLatestBeers(latestBeers = [...latestBeers, ...response])
                 })
-                .then(()=>{
-                    console.log(latestBeers)
-                })
             }
         }
 

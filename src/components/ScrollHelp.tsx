@@ -7,7 +7,6 @@ const ScrollHelp = () =>{
     useEffect(()=>{
         window.addEventListener("scroll", ()=>{
 
-            console.log(window.scrollY)
             if(window.scrollY > 1300)
                 document.getElementById("scroll-div")?.classList.add("scroll-visible")
             else

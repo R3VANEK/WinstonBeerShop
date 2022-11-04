@@ -16,6 +16,10 @@ const BeerDetails = () =>{
     let [isShowedBrewersTip, setIsShowedBrewersTip] = useState(false);
 
 
+    useEffect(()=>{
+        if(localStorage.getItem(beerData.id.toString()) !== null)
+            setIsLiked(true);
+    }, [])
 
     const likeBeerClicked = () =>{
 

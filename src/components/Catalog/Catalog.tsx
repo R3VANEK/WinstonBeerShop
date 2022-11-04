@@ -1,4 +1,4 @@
-import React, {useState, useEffect} from 'react'
+import React, {useState, useEffect, useMemo} from 'react'
 import {Link} from 'react-router-dom'
 import './catalog.css'
 
@@ -19,6 +19,7 @@ const Catalog = () =>{
     let [beerList, setBeerList] = useState<PunkFullBeer[] | []>([])
     let [pageAPINumber ,setPageAPINumber] = useState(1);
     let [beerName, setBeerName] = useState("");
+    let [isLoading, setIsLoading] = useState(false);
     let [catalogState, setCatalogState] = useState("beer");
 
 
@@ -29,108 +30,155 @@ const Catalog = () =>{
             if(window.innerHeight + document.documentElement.scrollTop
                 > document.documentElement.offsetHeight * 0.9 && catalogState === "beer"){
                     setPageAPINumber(pageAPINumber++)
+                    scrollFetchBeers()
+                    .catch((err)=>{throw new Error(err)});;
+
                 }
         })
-    })
-
-    // fetch osbługujący infinite scrolla
-    useEffect(()=>{
-
-        if(catalogState !== "beer")
-            return;
-
-        console.log("scroll fetch")
-        
-        fetch(`https://api.punkapi.com/v2/beers?page=${pageAPINumber}&per_page=15`, {method:"GET"})
-        .then((res)=>{return res.json()})
-        .then((res)=>{
-            let response:PunkFullBeer[] = res
-            setBeerList(beerList = [...beerList, ...response])
-        })
-
-    }, [pageAPINumber])
+    }, [])
 
 
-    // fetch przy korzystaniu z inputa zaimplementowany z debouncem
+     // fetch przy korzystaniu z inputa zaimplementowany z debouncem
     // dla optymalizacji aplikacji
-    useEffect(() => {
-        const getData = setTimeout(() => {
+    // useEffect(() => {
+    //     console.log("siema z beername effect")
 
-            fetch(`https://api.punkapi.com/v2/beers?beer_name=${beerName}`, {method:"GET"})
-            .then((res)=>{
-                return res.json()
-            })
-            .then((res)=>{
-                let response:PunkFullBeer[] = res
-                setBeerList(beerList = [...beerList, ...response])
-            })
+    //     const getData = setTimeout( async () => {
 
-        },1000)
+    //         await setBeerList(beerList = [])
+    //         await setCatalogState("search")
+
+    //         let data = await fetch(`https://api.punkapi.com/v2/beers?beer_name=${beerName}`, {method:"GET"})
+    //         const beers:PunkFullBeer[] = await data.json();
+    //         setBeerList(beerList = [...beerList, ...beers])
+
+    //     },1000)
     
     
-        return () => clearTimeout(getData)
+    //     return () => clearTimeout(getData)
       
-    }, [beerName])
+    // }, [beerName])
+
+
+    const scrollFetchBeers = async ()=>{
+        let data = await  fetch(`https://api.punkapi.com/v2/beers?page=${pageAPINumber}&per_page=15`, {method:"GET"});
+        const beers:PunkFullBeer[] = await data.json();
+
+        if(pageAPINumber === 1){
+            alert("elo przypisuje z apinumber 1")
+            setBeerList(beerList = [...beers])
+            
+        }
+        else
+            setBeerList(beerList = [...beerList, ...beers])
+    }
+
+
+
+
+    // // fetch osbługujący infinite scrolla
+    // useEffect(()=>{
+    //     console.log("siema z scroll useEffect")
+    //     if(catalogState !== "beer")
+    //         return;
+
+    //         const wrapper = async ()=>{
+    //             let data = await  fetch(`https://api.punkapi.com/v2/beers?page=${pageAPINumber}&per_page=15`, {method:"GET"});
+    //             const beers:PunkFullBeer[] = await data.json();
+
+    //             if(pageAPINumber === 1){
+    //                 alert("elo przypisuje z apinumber 1")
+    //                 setBeerList(beerList = [...beers])
+                    
+    //             }
+    //             else
+    //                 setBeerList(beerList = [...beerList, ...beers])
+    //         }
+
+    //         wrapper()
+    //         .catch((err)=> {throw new Error(err)});;
+
+
+    // }, [pageAPINumber])
+
+
+   
 
 
     useEffect(()=>{
 
         if(catalogState === "favorites"){
-            
-            //TODO wyeliminuj to żeby nie było bounca
-            setBeerList(beerList = [])
 
-            let favoriteBeers = []
+            const wrapper = async () =>{
 
-            for(let i =0; i < localStorage.length; i++){
+                let favoriteBeers = []
 
-                const key = localStorage.key(i) || '0';
-                // zabezpieczenie przed innymi wartościami w localStorage
-                if(!(localStorage.getItem(key) === 'liked'))
-                    continue;
+                for(let i =0; i < localStorage.length; i++){
 
-                fetch(`https://api.punkapi.com/v2/beers/${key}`, {method:"GET"})
-                .then((res) => {return res.json()})
-                .then((res) =>{
-                    let response:PunkFullBeer[] = res
-                    console.log(response)
-                    setBeerList(beerList = [...beerList, ...response])
-                })
+                    const key = localStorage.key(i) || '0';
+                    // zabezpieczenie przed innymi wartościami w localStorage
+                    if(!(localStorage.getItem(key) === 'liked'))
+                        continue;
+
+                    let data = await  fetch(`https://api.punkapi.com/v2/beers/${key}`, {method:"GET"});
+                    const beers:PunkFullBeer[] = await data.json();
+                    favoriteBeers.push(beers[0])
+                }
+
+                setBeerList(beerList = favoriteBeers)
+
             }
+
+            wrapper()
+            .catch((err)=>{throw new Error(err)});;
         }
+
+
         else if(catalogState === "beer"){
+
+            const wrapper = async () =>{
+                debugger;
+                await setPageAPINumber(1);
+                await scrollFetchBeers()
+                .catch((err)=>{throw new Error(err)});;
+            }
+
+            wrapper();
             //TODO wyeliminuj to żeby nie było bounca
-            setBeerList(beerList = [])
-            setPageAPINumber(2);
+            
+           
         }
 
     }, [catalogState])
 
 
 
-    const changeCatalogType = (mode:string) =>{
-       
-        setCatalogState(mode)
+    const searchBeer = async (e:React.ChangeEvent<HTMLInputElement>) =>{
+        let beerName = e.target.value;
+
+        const getData = setTimeout( async () => {
+
+            await setBeerList(beerList = [])
+            await setCatalogState("search")
+
+            let data = await fetch(`https://api.punkapi.com/v2/beers?beer_name=${beerName}`, {method:"GET"})
+            const beers:PunkFullBeer[] = await data.json();
+            setBeerList(beerList = [...beerList, ...beers])
+
+        },1000) 
+
+
+        return () => clearTimeout(getData)
     }
 
 
 
-
-
-
+    
     let LatestBeerCards = beerList.map((beer)=>{
         return(
             <BeerCard beerId={beer.id} beerName={beer.name} image={beer.image_url} key={beer.id}/>
         )
     })
-
-
-    const searchBeer = (e: React.FormEvent<HTMLInputElement>) =>{
-        const beerName = e.currentTarget.value;
-        setBeerName(e.currentTarget.value)
-    }
-
-
 
     return(
         <>
@@ -155,11 +203,11 @@ const Catalog = () =>{
                
                 <section id="catalog-type-wrapper">
 
-                    <div className={catalogState === "beer" ? "catalog-type active" : "catalog-type"} onClick={() =>{changeCatalogType("beer")}}>
+                    <div className={catalogState !== "favorites" ? "catalog-type active" : "catalog-type"} onClick={() =>{setCatalogState("beer")}}>
                         <h2>Our products</h2>
                         <p>Discover all of our finest collection of homebrew beers</p>
                     </div>
-                    <div className={catalogState === "favorites" ? "catalog-type active" : "catalog-type"} onClick={() =>{changeCatalogType("favorites")}}>
+                    <div className={catalogState === "favorites" ? "catalog-type active" : "catalog-type"} onClick={() =>{setCatalogState("favorites")}}>
                         <h2>Your favorites</h2>
                         <p>Tested and loved. These beers are the closest to your heart and taste</p>
                     </div>
