@@ -15,8 +15,11 @@
   background-color: #1e1c1a;
   width: 65%;
   position: relative;
+  overflow-y: scroll;
 }
 #beer-details main #heading-wrapper {
+  height: auto;
+  padding: 40px;
   display: flex;
   flex-direction: row;
   justify-content: center;
@@ -125,7 +128,12 @@
 }
 #overlay-full-width #brewer-tips-wrapper h2 {
   font-family: "Kaushan Script", cursive;
-  font-size: 5rem;
+  font-size: 3rem;
+}
+#overlay-full-width #brewer-tips-wrapper p {
+  font-size: 1.5rem;
+  text-align: center;
+  padding: 20px;
 }
 #overlay-full-width #brewer-tips-wrapper .close-tip {
   width: 50px;

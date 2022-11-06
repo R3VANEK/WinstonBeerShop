@@ -20,8 +20,11 @@
         background-color:#1e1c1a;
         width:65%;
         position: relative;
+        overflow-y: scroll;
 
         #heading-wrapper{
+            height:auto;
+            padding: 40px;
             display: flex;
             flex-direction: row;
             justify-content: center;
@@ -144,7 +147,13 @@
 
         h2{
             font-family: 'Kaushan Script', cursive;
-            font-size:5rem;
+            font-size:3rem;
+        }
+
+        p{
+            font-size:1.5rem;
+            text-align: center;
+            padding:20px;
         }
 
         .close-tip{
