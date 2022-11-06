@@ -1,4 +1,4 @@
-import React, {useState, useEffect, useMemo} from 'react'
+import React, {useState, useEffect} from 'react'
 import {Link} from 'react-router-dom'
 import './catalog.css'
 
@@ -31,34 +31,10 @@ const Catalog = () =>{
             if(window.innerHeight + document.documentElement.scrollTop
                 > document.documentElement.offsetHeight * 0.9 && catalogState === "beer"){
                     setPageAPINumber(pageAPINumber++)
-                    scrollFetchBeers()
-                    .catch((err)=>{throw new Error(err)});;
-
                 }
         })
     }, [])
 
-
-     // fetch przy korzystaniu z inputa zaimplementowany z debouncem
-    // dla optymalizacji aplikacji
-    // useEffect(() => {
-    //     console.log("siema z beername effect")
-
-    //     const getData = setTimeout( async () => {
-
-    //         await setBeerList(beerList = [])
-    //         await setCatalogState("search")
-
-    //         let data = await fetch(`https://api.punkapi.com/v2/beers?beer_name=${beerName}`, {method:"GET"})
-    //         const beers:PunkFullBeer[] = await data.json();
-    //         setBeerList(beerList = [...beerList, ...beers])
-
-    //     },1000)
-    
-    
-    //     return () => clearTimeout(getData)
-      
-    // }, [beerName])
 
 
     const scrollFetchBeers = async ()=>{
@@ -66,56 +42,53 @@ const Catalog = () =>{
         if(catalogState !== "beer")
             return
 
+
         await setIsLoading(true)
         let data = await  fetch(`https://api.punkapi.com/v2/beers?page=${pageAPINumber}&per_page=15`, {method:"GET"});
         const beers:PunkFullBeer[] = await data.json();
 
-        if(pageAPINumber === 1){
-            alert("elo przypisuje z apinumber 1")
+        if(pageAPINumber === 1)
             setBeerList(beerList = [...beers])
-            
-        }
         else
             setBeerList(beerList = [...beerList, ...beers])
 
         await setIsLoading(false)
-
-        
     }
 
 
 
 
     // // fetch osbługujący infinite scrolla
-    // useEffect(()=>{
-    //     console.log("siema z scroll useEffect")
-    //     if(catalogState !== "beer")
-    //         return;
+    useEffect(()=>{
 
-    //         const wrapper = async ()=>{
-    //             let data = await  fetch(`https://api.punkapi.com/v2/beers?page=${pageAPINumber}&per_page=15`, {method:"GET"});
-    //             const beers:PunkFullBeer[] = await data.json();
+        if(catalogState !== "beer")
+            return;
 
-    //             if(pageAPINumber === 1){
-    //                 alert("elo przypisuje z apinumber 1")
-    //                 setBeerList(beerList = [...beers])
-                    
-    //             }
-    //             else
-    //                 setBeerList(beerList = [...beerList, ...beers])
-    //         }
+            const wrapper = async ()=>{
+                let data = await  fetch(`https://api.punkapi.com/v2/beers?page=${pageAPINumber}&per_page=15`, {method:"GET"});
+                const beers:PunkFullBeer[] = await data.json();
 
-    //         wrapper()
-    //         .catch((err)=> {throw new Error(err)});;
+                if(pageAPINumber === 1)
+                    setBeerList(beerList = [...beers])
+                else
+                    setBeerList(beerList = [...beerList, ...beers])
+            }
+
+            wrapper()
+            .catch((err)=> {throw new Error(err)});;
 
 
-    // }, [pageAPINumber])
+    }, [pageAPINumber])
 
 
    
 
 
     useEffect(()=>{
+
+
+        if(catalogState !== "search")
+            (document.getElementById("searchInput") as HTMLInputElement).value = ""
 
         if(catalogState === "favorites"){
 
@@ -155,9 +128,7 @@ const Catalog = () =>{
             }
 
             wrapper();
-            //TODO wyeliminuj to żeby nie było bounca
-            
-           
+            //TODO wyeliminuj to żeby nie było bounca 
         }
 
     }, [catalogState])
@@ -191,23 +162,8 @@ const Catalog = () =>{
 
 
     const searchBeer = async (e:React.ChangeEvent<HTMLInputElement>) =>{
-        let beerName = e.target.value;
         setCatalogState("search")
         setBeerName(beerName = e.target.value);
-
-        // const getData = setTimeout( async () => {
-
-        //     await setBeerList(beerList = [])
-        //     await setCatalogState("search")
-
-        //     let data = await fetch(`https://api.punkapi.com/v2/beers?beer_name=${beerName}`, {method:"GET"})
-        //     const beers:PunkFullBeer[] = await data.json();
-        //     setBeerList(beerList = [...beerList, ...beers])
-
-        // },1000) 
-
-
-        // return () => clearTimeout(getData)
     }
 
 
@@ -263,7 +219,7 @@ const Catalog = () =>{
                
                 <div id="input-wrapper">
                     <span className="material-symbols-outlined">search</span>
-                    <input type="text" placeholder="search beer by name" onChange={searchBeer} />
+                    <input type="text" placeholder="search beer by name" id="searchInput" onChange={searchBeer} />
                 </div>
 
                 <section id="card-holder">

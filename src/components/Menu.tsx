@@ -1,5 +1,6 @@
 import React, {useState} from 'react'
 import {Link} from "react-router-dom";
+import { HashLink } from 'react-router-hash-link';
 
 
 import hamburger from '../images/hamburger.png';
@@ -18,9 +19,9 @@ const Menu = () =>{
             <aside id="menu-wrapper" className={(isMenuExpanded) ? "menu-expanded" : " menu-hidden"}>
             
                 <ul>
-                    <a href="#about-section"><li className="menu-el">About us</li></a>
-                    <a href="#latest-section"><li className="menu-el">Latest news</li></a>
-                    <a href="#gallery-section"><li className="menu-el">Gallery</li></a>
+                    <HashLink smooth to="/#about-section"><li className="menu-el">About us</li></HashLink>
+                    <HashLink smooth to="/#latest-section"><li className="menu-el">Latest news</li></HashLink>
+                    <HashLink smooth to="/#gallery-section"><li className="menu-el">Gallery</li></HashLink>
                 </ul>
 
                 <Link to={"catalog"}>

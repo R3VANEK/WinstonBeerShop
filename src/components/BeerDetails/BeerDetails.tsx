@@ -56,8 +56,7 @@ const BeerDetails = () =>{
                     <div id="heading-wrapper">
                         
                         {/* TODO id 115 piwa jest EDge Case dla tekstu, trzeba poprawić wielkość */}
-                        {/* <h1  id='beer-details-h1'>{beerData.name}</h1> */}
-                        <h1  id='beer-details-h1'>lorem ipsum sid dolor 2007 - 2019 asdasdasd</h1>
+                        <h1  id='beer-details-h1'>{beerData.name}</h1>
 
                         <div id="fav-and-tips-wrapper">
                             <div className={(isLiked) ? "liked-beer-wrapper liked" : "liked-beer-wrapper"}>
@@ -73,8 +72,7 @@ const BeerDetails = () =>{
                     <h2 id="beer-tagline">{beerData.tagline}</h2>
                     
 
-                    {/* <p id="beer-description">{beerData.description}</p> */}
-                    <p id="beer-description">Lorem ipsum dolor sit amet consectetur, adipisicing elit. Beatae quidem cum laudantium rerum minus temporibus, nihil quo sunt provident, tenetur repudiandae eligendi deserunt ipsa nesciunt nam fugit laborum placeat ex. Lorem ipsum dolor sit amet consectetur, adipisicing elit. Vero nemo quidem, laborum sed voluptate aliquam, ad eius repellat eos temporibus, impedit doloribus repudiandae enim aut amet officia nesciunt voluptatum aspernatur. Lorem ipsum dolor sit amet, consectetur adipisicing elit. Illum quaerat ullam corporis, enim facere, sapiente incidunt fugiat ipsam ipsum tenetur esse nisi rem. Distinctio ut recusandae commodi fugit omnis nostrum? Lorem ipsum dolor sit amet consectetur adipisicing elit. Iste quisquam totam nam doloribus, nostrum ullam, libero officia natus expedita obcaecati commodi molestiae accusantium nemo cum necessitatibus corporis sunt doloremque. Dolorem. Lorem ipsum dolor sit amet consectetur adipisicing elit. Explicabo, totam amet? Quia reiciendis, itaque voluptates nihil ipsum possimus, aliquam cupiditate expedita sed odit fugiat ullam, quibusdam asperiores animi quos sit! Lorem ipsum dolor sit amet consectetur adipisicing elit. Ipsam assumenda tenetur impedit dolor possimus vel nihil corporis et unde explicabo dolore ex consectetur, dicta modi officia laborum placeat, tempora rerum. Lorem, ipsum dolor sit amet consectetur adipisicing elit. Facere, voluptatum nobis ad consectetur porro itaque quod repellendus velit repellat nostrum aperiam fugiat. Architecto dolore odit ullam ab animi eius hic? Lorem ipsum dolor sit amet consectetur adipisicing elit. Delectus ipsam, unde nam neque quo, nulla perspiciatis rerum ut repellat sint dolores, ipsum deserunt atque sequi laborum magni reiciendis perferendis sapiente! Lorem ipsum dolor sit amet consectetur adipisicing elit. Perferendis maxime maiores dolores aut. Dignissimos, voluptates commodi perspiciatis beatae eveniet voluptatum fugit consequatur recusandae, error earum in, nam magni dolor necessitatibus.</p>
+                    <p id="beer-description">{beerData.description}</p>
 
                 </main>
 
