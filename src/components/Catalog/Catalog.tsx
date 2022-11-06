@@ -8,6 +8,7 @@ import Logo from "../../images/logo.png"
 import Menu from '../Menu'
 import BeerCard from '../BeerCard'
 import ScrollHelp from '../ScrollHelp'
+import SkeletonBeerCard from '../SkeletonBeerCard'
 
 
 
@@ -61,6 +62,11 @@ const Catalog = () =>{
 
 
     const scrollFetchBeers = async ()=>{
+
+        if(catalogState !== "beer")
+            return
+
+        await setIsLoading(true)
         let data = await  fetch(`https://api.punkapi.com/v2/beers?page=${pageAPINumber}&per_page=15`, {method:"GET"});
         const beers:PunkFullBeer[] = await data.json();
 
@@ -71,6 +77,10 @@ const Catalog = () =>{
         }
         else
             setBeerList(beerList = [...beerList, ...beers])
+
+        await setIsLoading(false)
+
+        
     }
 
 
@@ -113,6 +123,7 @@ const Catalog = () =>{
 
                 let favoriteBeers = []
 
+                await setIsLoading(true)
                 for(let i =0; i < localStorage.length; i++){
 
                     const key = localStorage.key(i) || '0';
@@ -125,7 +136,8 @@ const Catalog = () =>{
                     favoriteBeers.push(beers[0])
                 }
 
-                setBeerList(beerList = favoriteBeers)
+                await setBeerList(beerList = favoriteBeers)
+                await setIsLoading(false)
 
             }
 
@@ -137,7 +149,6 @@ const Catalog = () =>{
         else if(catalogState === "beer"){
 
             const wrapper = async () =>{
-                debugger;
                 await setPageAPINumber(1);
                 await scrollFetchBeers()
                 .catch((err)=>{throw new Error(err)});;
@@ -153,22 +164,50 @@ const Catalog = () =>{
 
 
 
-    const searchBeer = async (e:React.ChangeEvent<HTMLInputElement>) =>{
-        let beerName = e.target.value;
+    useEffect(()=>{
 
+        if(beerName === "" || catalogState !== "search")
+            return
+        
         const getData = setTimeout( async () => {
 
             await setBeerList(beerList = [])
             await setCatalogState("search")
+            await setIsLoading(true)
 
             let data = await fetch(`https://api.punkapi.com/v2/beers?beer_name=${beerName}`, {method:"GET"})
             const beers:PunkFullBeer[] = await data.json();
             setBeerList(beerList = [...beerList, ...beers])
 
+            await setIsLoading(false)
+
         },1000) 
 
 
         return () => clearTimeout(getData)
+
+    }, [beerName])
+
+
+
+    const searchBeer = async (e:React.ChangeEvent<HTMLInputElement>) =>{
+        let beerName = e.target.value;
+        setCatalogState("search")
+        setBeerName(beerName = e.target.value);
+
+        // const getData = setTimeout( async () => {
+
+        //     await setBeerList(beerList = [])
+        //     await setCatalogState("search")
+
+        //     let data = await fetch(`https://api.punkapi.com/v2/beers?beer_name=${beerName}`, {method:"GET"})
+        //     const beers:PunkFullBeer[] = await data.json();
+        //     setBeerList(beerList = [...beerList, ...beers])
+
+        // },1000) 
+
+
+        // return () => clearTimeout(getData)
     }
 
 
@@ -179,6 +218,15 @@ const Catalog = () =>{
             <BeerCard beerId={beer.id} beerName={beer.name} image={beer.image_url} key={beer.id}/>
         )
     })
+
+
+    let SkeletonBeerCards = [1,2,3,4,5,6,7,8,9,10].map((i)=>{
+        return(<SkeletonBeerCard/>)
+    })
+
+    let NotFoundVisual:JSX.Element = (
+        <h1>No records of that beer found, sorry</h1>
+    )
 
     return(
         <>
@@ -219,7 +267,10 @@ const Catalog = () =>{
                 </div>
 
                 <section id="card-holder">
-                    {LatestBeerCards}
+
+                    {isLoading && SkeletonBeerCards}
+                    {!isLoading && LatestBeerCards}
+                    {/* {(LatestBeerCards.length === 0) ? NotFoundVisual : LatestBeerCards} */}
                 </section>
 
             </main>

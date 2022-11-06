@@ -10,5 +10,6 @@ export async function detailsLoader({params}:any){
     if((beerData as PunkErrorObject).statusCode !== undefined)
         throw new Error((beerData as PunkErrorObject).message)
 
-    return (beerData as PunkFullBeer[]).at(0);
+    let casted = beerData as PunkFullBeer[]
+    return casted[0];
 }
